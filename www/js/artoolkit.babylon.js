@@ -34,20 +34,20 @@
 			camera.freezeProjectionMatrix(BABYLON.Matrix.FromArray(this.getCameraMatrix()));
 			window.camera = camera;	
 
-			var videoScene = new BABYLON.Layer("back", null, scene);
-			videoScene.texture = new BABYLON.VideoTexture("video", video, scene, false);
-			videoScene.isBackground = true;
-			videoScene.texture.level = 0;
+			//var videoScene = new BABYLON.Layer("back", null, scene);
+			//videoScene.texture = new BABYLON.VideoTexture("video", video, scene, false);
+			///videoScene.isBackground = true;
+			//videoScene.texture.level = 0;
 
 			if (this.orientation === 'portrait') {
-				videoScene.rotation.z = Math.PI/2;
+				//videoScene.rotation.z = Math.PI/2;
 			}
 	
 			var self = this;
 
 			return {
 				scene: scene,
-				videoScene: videoScene,
+				//videoScene: videoScene,
 				camera: camera,
 
 				arController: this,
