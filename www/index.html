@@ -34,17 +34,99 @@
       <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
       <link rel="stylesheet" type="text/css" href="css/index.css">
       <title>Canvas Camera Demo</title>
+<style>
+html,body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	text-align: center;
+	overflow-x: hidden;
+}
+.portrait canvas {
+	transform-origin: 0 0;
+	transform: rotate(-90deg) translateX(-100%);
+    width:100%; height:100%; 
+    position:absolute; top:0px; left:0px;
+}
+.desktop canvas {
+ 	transform: scale(-1, 1);
+    width:100%; height:100%; 
+    position:absolute; top:0px; left:0px;
+}
+</style>
   </head>
 <body>
+<script async src="js/artoolkit.min.js"></script>
+<script src="js/babylon.2.5.max.js"></script>
+<script async src="js/artoolkit.babylon.js"></script>
 <div class="app">
     <div id="deviceready">
-        <canvas class="raster" id="fullsize"></canvas>
-        <div class="actions">
-            <div class="action play" id="play">Play</div>
-            <div class="action switch" id="switch">Switch</div>
-            <div class="action stop" id="stop">Stop</div>
-            <div class="action torch" id="torch">Torch</div>
-        </div>
+<canvas class="raster" id="fullsize"></canvas>
+<canvas id="renderCanvas"></canvas>
+<script>
+raster = document.getElementById('renderCanvas');
+window.canvas = document.getElementById('renderCanvas');
+window.canvas.width = raster.width;
+window.canvas.height = raster.height;
+    
+window.ARBabylonOnLoad = function() {
+
+	ARController.getUserMediaBabylonScene({maxARVideoSize: 320, cameraParam: 'data/camera_para.dat', 
+	onSuccess: function(arScene, arController, arCamera) {
+
+		document.body.className = arController.orientation;
+		
+		var engine = new BABYLON.Engine(window.canvas, true);
+        engine.setSize(window.canvas.width, window.canvas.height);
+		
+		if (arController.orientation === 'portrait') {
+			var w = (window.innerWidth / arController.videoHeight) * arController.videoWidth;
+			var h = window.innerWidth;
+			engine.setSize(w, h);
+		} else {
+			if (/Android|mobile|iPad|iPhone/i.test(navigator.userAgent)) {
+				engine.setSize(window.innerWidth, (window.innerWidth / arController.videoWidth) * arController.videoHeight);
+			} else {
+				engine.setSize(arController.videoWidth, arController.videoHeight);
+				document.body.className += ' desktop';
+			}
+		}
+
+		var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 0, 0), arScene.scene);
+		
+		var box = BABYLON.Mesh.CreateBox('box1', 1, arScene.scene);
+		box.position.z = 40;
+		box.position.x = 80;
+		box.position.y = 80;
+		var scalingFactor = new BABYLON.Vector3(100, 100, 100);
+		box.scaling = scalingFactor;
+		box.isVisible = false;
+		
+		arController.loadNFTMarker('dataNFT/pinball', function(markerId) {
+		    var markerRoot = arController.createBabylonNFTMarker(markerId, arScene.scene);
+			box.parent = markerRoot;
+		});
+					
+		engine.runRenderLoop(function () {		
+			arScene.process();
+			arScene.scene.render();
+		});
+
+        // the canvas/window resize event handler
+        window.addEventListener('resize', function () {
+            engine.resize();
+        });		
+
+	}});
+
+	delete window.ARBabylonOnLoad;
+
+};
+
+if (window.ARController && ARController.getUserMediaBabylonScene) {
+	ARBabylonOnLoad();
+}
+</script>
     </div>
 </div>
 <script type="text/javascript" src="cordova.js"></script>
