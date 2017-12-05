@@ -12,7 +12,7 @@
         }
     },
     "dependencies": {
-        "com.virtuoworks.cordova-plugin-canvascamera": "git+https://github.com/mkaouri/CanvasCameraPlugin.git",
+        "com.virtuoworks.cordova-plugin-canvascamera": "https://github.com/mkaouri/CanvasCameraPlugin.git",
         "cordova-android": "^6.2.3",
         "cordova-plugin-compat": "^1.1.0",
         "cordova-plugin-whitelist": "1"
