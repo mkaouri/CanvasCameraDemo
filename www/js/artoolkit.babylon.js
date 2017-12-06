@@ -2,58 +2,31 @@
 
 (function() {
 	var integrate = function() {
-
-		ARController.getUserMediaBabylonScene = function(configuration) {
-			var obj = {};
-			for (var i in configuration) {
-				obj[i] = configuration[i];
-			}
-			var onSuccess = configuration.onSuccess;
-
-			obj.onSuccess = function(arController, arCameraParam) {
-				arController.detectMarker(window.canvas);
-				var scenes = arController.createBabylonScene();
-				onSuccess(scenes, arController, arCameraParam);
-			};
-
-			var video = window.canvas; //this.getUserMediaARController(obj);
-			return video;
-		};
-		
-		ARController.prototype.createBabylonScene = function(video) {
+	
+		ARController.prototype.createBabylonScene = function(canvas, video) {
 			video = video || this.image;
 
 			this.setupBabylon();
 
-			var engine = new BABYLON.Engine(window.canvas, true);
-            engine.setSize(video.width, video.height);
+			var engine = new BABYLON.Engine(canvas, true);
+            engine.setSize(canvas.width, canvas.height);
 			
 			var scene = new BABYLON.Scene(engine);
             scene.useRightHandedSystem = true;
-
+			scene.clearColor = new BABYLON.Color4(0,0,0,0.0000000000000001); 
+			
             camera = new BABYLON.Camera('camera1', new BABYLON.Vector3(0, 0, 0), scene);      		
 			camera.freezeProjectionMatrix(BABYLON.Matrix.FromArray(this.getCameraMatrix()));
 			window.camera = camera;	
-
-			//var videoScene = new BABYLON.Layer("back", null, scene);
-			//videoScene.texture = new BABYLON.VideoTexture("video", video, scene, false);
-			///videoScene.isBackground = true;
-			//videoScene.texture.level = 0;
-
-			if (this.orientation === 'portrait') {
-				//videoScene.rotation.z = Math.PI/2;
-			}
-	
+			
 			var self = this;
 
 			return {
 				scene: scene,
-				//videoScene: videoScene,
+				
 				camera: camera,
 
 				arController: this,
-
-				video: video,
 
 				process: function() {
 					for (var i in self.BabylonPatternMarkers) {
