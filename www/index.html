@@ -95,7 +95,7 @@ document.addEventListener('deviceready', function () {
 		
 }, false);
 	
-ARBabylonOnLoad = function() {
+window.ARBabylonOnLoad = function() {
 
 	var canvasCamera = document.getElementById('fullsize');
 	var canvas = document.getElementById('renderCanvas');
@@ -114,6 +114,7 @@ ARBabylonOnLoad = function() {
 		
 		var video = document.createElement('video');
 		video.src = window.URL.createObjectURL(canvasCamera.captureStream());
+		alert('captureStream');
 		
 		arScene = arController.createBabylonScene(canvas, video);	
 
