@@ -61,8 +61,8 @@ html,body {
 <script async src="js/artoolkit.babylon.js"></script>
 <div class="app">
     <div id="deviceready">
+<canvas id="renderCanvas"></canvas>	    
 <canvas class="raster" id="fullsize"></canvas>
-<canvas id="renderCanvas"></canvas>
 <script>
 raster = document.getElementById('raster');
 window.canvas = document.getElementById('renderCanvas');
@@ -80,14 +80,14 @@ window.ARBabylonOnLoad = function() {
         engine.setSize(window.canvas.width, window.canvas.height);
 		
 		if (arController.orientation === 'portrait') {
-			var w = (window.innerWidth / arController.videoHeight) * arController.videoWidth;
+			var w = (window.innerWidth / window.canvas.height) * window.canvas.width;
 			var h = window.innerWidth;
 			engine.setSize(w, h);
 		} else {
 			if (/Android|mobile|iPad|iPhone/i.test(navigator.userAgent)) {
-				engine.setSize(window.innerWidth, (window.innerWidth / arController.videoWidth) * arController.videoHeight);
+				engine.setSize(window.innerWidth, (window.innerWidth / window.canvas.width) * window.canvas.height);
 			} else {
-				engine.setSize(arController.videoWidth, arController.videoHeight);
+				engine.setSize(window.canvas.width, window.canvas.height);
 				document.body.className += ' desktop';
 			}
 		}
