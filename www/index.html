@@ -103,8 +103,8 @@ document.addEventListener('deviceready', function () {
 	
 window.ARBabylonOnLoad = function() {
 
-	canvasCamera = document.getElementById('fullsize');
-	canvas = document.getElementById('renderCanvas');
+	var canvasCamera = document.getElementById('fullsize');
+	var canvas = document.getElementById('renderCanvas');
 	
 	var arController = null;
 	var arScene=null;
@@ -114,11 +114,15 @@ window.ARBabylonOnLoad = function() {
     arCameraParam.onload = function () {
         arController = new ARController(640, 480, arCameraParam);
 		
+		alert('arController');
+		
 		var video = document.createElement('video');
 		video.src = window.URL.createObjectURL(canvasCamera.captureStream());
 		
 		arScene = arController.createBabylonScene(canvas, video);	
 
+		alert('arScene');
+		
 		if (canvasCamera.videoWidth < canvasCamera.videoHeight) {
 			arController.orientation = 'portrait';
 			arController.videoWidth = canvasCamera.videoHeight;
@@ -130,18 +134,15 @@ window.ARBabylonOnLoad = function() {
 		}			
 		document.body.className = arController.orientation;
 		
-		var engine = new BABYLON.Engine(canvas, true);
-        engine.setSize(canvas.width, canvas.height);
-		
 		if (arController.orientation === 'portrait') {
 			var w = (window.innerWidth / window.canvas.height) * window.canvas.width;
 			var h = window.innerWidth;
-			engine.setSize(w, h);
+			arScene.engine.setSize(w, h);
 		} else {
 			if (/Android|mobile|iPad|iPhone/i.test(navigator.userAgent)) {
-				engine.setSize(window.innerWidth, (window.innerWidth / window.canvas.width) * window.canvas.height);
+				arScene.engine.setSize(window.innerWidth, (window.innerWidth / window.canvas.width) * window.canvas.height);
 			} else {
-				engine.setSize(window.canvas.width, window.canvas.height);
+				arScene.engine.setSize(window.canvas.width, window.canvas.height);
 				document.body.className += ' desktop';
 			}
 		}
@@ -159,25 +160,23 @@ window.ARBabylonOnLoad = function() {
 		arController.loadNFTMarker('dataNFT/pinball', function(markerId) {
 		    var markerRoot = arController.createBabylonNFTMarker(markerId, arScene.scene);
 			box.parent = markerRoot;
+			alert('markerRoot');
 		});
 		
 		//arController.detectMarker(v);
 		
-		engine.runRenderLoop(function () {		
+		arScene.engine.runRenderLoop(function () {		
 			arScene.process();
 			arScene.scene.render();
 		});
 
         // the canvas/window resize event handler
         window.addEventListener('resize', function () {
-            engine.resize();
+            arScene.engine.resize();
         });		
 		
    };		
    arCameraParam.load('data/camera_para.dat');	
-		
-
-   delete window.ARBabylonOnLoad;
 
 };
 
