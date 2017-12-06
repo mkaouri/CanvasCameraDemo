@@ -101,16 +101,17 @@ document.addEventListener('deviceready', function () {
 		
 }, false);
 	
-window.ARBabylonOnLoad = function() {
-
+ARBabylonOnLoad = function() {
+alert('ARBabylonOnLoad');
 	var canvasCamera = document.getElementById('fullsize');
 	var canvas = document.getElementById('renderCanvas');
-	
+alert('canvas');	
 	var arController = null;
 	var arScene=null;
 			
 	var arCameraParam = new ARCameraParam();
-					
+	alert('arCameraParam');
+	
     arCameraParam.onload = function () {
         arController = new ARController(640, 480, arCameraParam);
 		
