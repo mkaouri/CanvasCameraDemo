@@ -11,12 +11,12 @@
 			var onSuccess = configuration.onSuccess;
 
 			obj.onSuccess = function(arController, arCameraParam) {
-				arController.detectMarker(windows.canvas);
+				arController.detectMarker(window.canvas);
 				var scenes = arController.createBabylonScene();
 				onSuccess(scenes, arController, arCameraParam);
 			};
 
-			var video = windows.canvas; //this.getUserMediaARController(obj);
+			var video = window.canvas; //this.getUserMediaARController(obj);
 			return video;
 		};
 		

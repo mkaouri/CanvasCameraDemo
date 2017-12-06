@@ -37,7 +37,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        document.getElementById('play').addEventListener('click', (function() {
+        /*document.getElementById('play').addEventListener('click', (function() {
             this.onPlay();
         }).bind(this), false);
         document.getElementById('stop').addEventListener('click', (function() {
@@ -48,7 +48,7 @@ var app = {
         }).bind(this), false);
         document.getElementById('torch').addEventListener('click', (function() {
             this.onTorch();
-        }).bind(this), false);
+        }).bind(this), false);*/
 
         if (window.plugin.CanvasCamera) {
           window.plugin.CanvasCamera.initialize({
@@ -56,7 +56,7 @@ var app = {
           });
         }
     },
-    onPlay: function() {
+  /*  onPlay: function() {
         console.log('play');
         if (window.plugin.CanvasCamera) {
            var options = {
@@ -115,7 +115,7 @@ var app = {
                 console.log('[CanvasCamera stop]', 'data', data);
             });
         }
-    }
+    }*/
 };
 
 app.initialize();
