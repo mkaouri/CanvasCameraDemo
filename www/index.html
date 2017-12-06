@@ -55,26 +55,76 @@ html,body {
 </style>
   </head>
 <body>
-<script async src="js/artoolkit.min.js"></script>
-<script src="js/babylon.2.5.max.js"></script>
-<script async src="js/artoolkit.babylon.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/artoolkit.min.js"></script>
+<script type="text/javascript" src="js/babylon.2.5.max.js"></script>
+<script type="text/javascript" src="js/artoolkit.babylon.js"></script>
+
 <div class="app">
-    <div id="deviceready">
-<canvas id="renderCanvas"></canvas>	    
-<canvas class="raster" id="fullsize"></canvas>
+    <div id="deviceready">		    
+		<canvas id="fullsize" width="640" height="480"></canvas>	
+		<canvas id="renderCanvas"></canvas>
 <script>
-raster = document.getElementById('raster');
-window.canvas = document.getElementById('renderCanvas');
-    
+document.addEventListener('deviceready', function () {
+
+	    if (window.plugin.CanvasCamera) {
+			window.plugin.CanvasCamera.initialize({
+                fullsize: window.document.getElementById('fullsize')
+            });
+       	
+           var options = {
+              canvas: {
+                width: 640,
+                height: 480
+              },
+              capture: {
+                width: 640,
+                height: 480
+              },
+              use: 'file',
+              fps: 30,
+              flashMode: false,
+              hasThumbnail: false,
+              thumbnailRatio: 1/6,
+              cameraFacing: 'back'
+          };
+		   
+          window.plugin.CanvasCamera.start(options, function(error) {
+            console.log('[CanvasCamera start]', 'error', error);
+          }, function(data) {
+            // console.log('[CanvasCamera start]', 'data', data);
+		  			
 window.ARBabylonOnLoad = function() {
 
-	ARController.getUserMediaBabylonScene({maxARVideoSize: 320, cameraParam: 'data/camera_para.dat', 
-	onSuccess: function(arScene, arController, arCamera) {
+	canvasCamera = document.getElementById('fullsize');
+	canvas = document.getElementById('renderCanvas');
+	
+	var arController = null;
+	var arScene=null;
+			
+	var arCameraParam = new ARCameraParam();
+					
+    arCameraParam.onload = function () {
+        arController = new ARController(640, 480, arCameraParam);
+		
+		var video = document.createElement('video');
+		video.src = window.URL.createObjectURL(canvasCamera.captureStream());
+		
+		arScene = arController.createBabylonScene(canvas, video);	
 
+		if (canvasCamera.videoWidth < canvasCamera.videoHeight) {
+			arController.orientation = 'portrait';
+			arController.videoWidth = canvasCamera.videoHeight;
+			arController.videoHeight = canvasCamera.videoWidth;
+		} else {
+			arController.orientation = 'landscape';
+			arController.videoWidth = canvasCamera.videoWidth;
+			arController.videoHeight = canvasCamera.videoHeight;
+		}			
 		document.body.className = arController.orientation;
 		
-		var engine = new BABYLON.Engine(window.canvas, true);
-        engine.setSize(window.canvas.width, window.canvas.height);
+		var engine = new BABYLON.Engine(canvas, true);
+        engine.setSize(canvas.width, canvas.height);
 		
 		if (arController.orientation === 'portrait') {
 			var w = (window.innerWidth / window.canvas.height) * window.canvas.width;
@@ -97,13 +147,15 @@ window.ARBabylonOnLoad = function() {
 		box.position.y = 80;
 		var scalingFactor = new BABYLON.Vector3(100, 100, 100);
 		box.scaling = scalingFactor;
-		box.isVisible = false;
+		//box.isVisible = false;
 		
 		arController.loadNFTMarker('dataNFT/pinball', function(markerId) {
 		    var markerRoot = arController.createBabylonNFTMarker(markerId, arScene.scene);
 			box.parent = markerRoot;
 		});
-					
+		
+		//arController.detectMarker(v);
+		
 		engine.runRenderLoop(function () {		
 			arScene.process();
 			arScene.scene.render();
@@ -113,20 +165,26 @@ window.ARBabylonOnLoad = function() {
         window.addEventListener('resize', function () {
             engine.resize();
         });		
+		
+   };		
+   arCameraParam.load('data/camera_para.dat');	
+		
 
-	}});
+   delete window.ARBabylonOnLoad;
 
-	delete window.ARBabylonOnLoad;
+  };
 
-};
-
-if (window.ARController && ARController.getUserMediaBabylonScene) {
+  if (window.ARController) {
 	ARBabylonOnLoad();
-}
+  }
+
+   });		  
+};
+		
+}, false);
 </script>
     </div>
 </div>
-<script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
+
 </body>
 </html>
