@@ -91,12 +91,15 @@ document.addEventListener('deviceready', function () {
 		   
           window.plugin.CanvasCamera.start(options, function(error) {
             console.log('[CanvasCamera start]', 'error', error);
-			 if (window.ARController) {
-					ARBabylonOnLoad();					
-			  }
+
           }, function(data) {
             // console.log('[CanvasCamera start]', 'data', data);
-			});		  
+			});	
+			
+			 if (window.ARController) {
+					ARBabylonOnLoad();					
+			  }	
+			  
 		};	
 		
 }, false);
