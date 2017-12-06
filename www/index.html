@@ -112,13 +112,13 @@ window.ARBabylonOnLoad = function() {
 		
 		alert('arController');
 		
-		var video = document.createElement('video');
-		alert('createElement');
+		//var video = document.createElement('video');
+		//alert('createElement');
 		
-		video.src = window.URL.createObjectURL(canvasCamera.captureStream());
-		alert('captureStream');
+		//video.src = window.URL.createObjectURL(canvasCamera.captureStream());
+		//alert('captureStream');
 		
-		arScene = arController.createBabylonScene(canvas, video);	
+		arScene = arController.createBabylonScene(canvas, canvasCamera.captureStream());	
 
 		alert('arScene');
 		
