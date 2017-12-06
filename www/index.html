@@ -69,7 +69,7 @@ document.addEventListener('deviceready', function () {
 
 	    if (window.plugin.CanvasCamera) {
 			window.plugin.CanvasCamera.initialize({
-                fullsize: window.document.getElementById('fullsize')
+                fullsize: document.getElementById('fullsize')
             });
        	
            var options = {
@@ -91,12 +91,11 @@ document.addEventListener('deviceready', function () {
 		   
           window.plugin.CanvasCamera.start(options, function(error) {
             console.log('[CanvasCamera start]', 'error', error);
-          }, function(data) {
-            // console.log('[CanvasCamera start]', 'data', data);
-		  	  if (window.ARController) {
-			        alert('ARController');
+			 if (window.ARController) {
 					ARBabylonOnLoad();					
 			  }
+          }, function(data) {
+            // console.log('[CanvasCamera start]', 'data', data);
 			});		  
 		};	
 		
