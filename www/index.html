@@ -19,16 +19,6 @@
 -->
 <html>
   <head>
-      <!--
-      Customize this policy to fit your own app's needs. For more guidance, see:
-          https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-      Some notes:
-          * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-          * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-          * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-              * Enable inline JS: add 'unsafe-inline' to default-src
-      -->
-	  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
 	  <meta name="format-detection" content="telephone=no">
       <meta name="msapplication-tap-highlight" content="no">
       <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -106,14 +96,15 @@ document.addEventListener('deviceready', function () {
 }, false);
 	
 ARBabylonOnLoad = function() {
-alert('ARBabylonOnLoad');
+
 	var canvasCamera = document.getElementById('fullsize');
 	var canvas = document.getElementById('renderCanvas');
-alert('canvas');	
+	
 	var arController = null;
 	var arScene=null;
 			
 	var arCameraParam = new ARCameraParam();
+	
 	alert('arCameraParam');
 	
     arCameraParam.onload = function () {
