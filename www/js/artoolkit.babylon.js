@@ -22,6 +22,8 @@
 			var self = this;
 
 			return {
+				engine: engine,
+								
 				scene: scene,
 				
 				camera: camera,
