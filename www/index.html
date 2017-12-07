@@ -50,11 +50,10 @@ html,body {
 <script type="text/javascript" src="js/artoolkit.min.js"></script>
 <script type="text/javascript" src="js/babylon.2.5.max.js"></script>
 <script type="text/javascript" src="js/artoolkit.babylon.js"></script>
-<script type="text/javascript" src="js/CCapture.js"></script>
 
 <div class="app">
     <div id="deviceready">		    
-		<canvas class="raster" id="fullsize"></canvas>	
+		<video class="raster" id="fullsize"></video>	
 		<canvas class="raster" id="renderCanvas"></canvas>
 <script>
 document.addEventListener('deviceready', function () {
@@ -112,22 +111,10 @@ window.ARBabylonOnLoad = function() {
 		//var video = document.createElement('video');
 		
 		//video.src = window.URL.createObjectURL(canvasCamera.captureStream());
-		var capturer = new CCapture( {
-			framerate: 30,
-			verbose: false
-		} );
-		capturer.start();
-		
-		function render(){
-			requestAnimationFrame(render);
-			// rendering stuff ...
-			capturer.capture(canvasCamera);
-		}
-		render();
 		
 		alert('captureStream');
 			
-		arScene = arController.createBabylonScene(canvas, capturer);	
+		arScene = arController.createBabylonScene(canvas, canvasCamera);	
 
 		alert('arScene');
 		
