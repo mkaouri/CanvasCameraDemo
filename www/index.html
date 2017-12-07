@@ -105,20 +105,24 @@ window.ARBabylonOnLoad = function() {
 			
 	var arCameraParam = new ARCameraParam();
 	
-	alert('arCameraParam');
-	
     arCameraParam.onload = function () {
         arController = new ARController(640, 480, arCameraParam);
-		
-		alert('arController');
-		
+				
 		var video = document.createElement('video');
-		alert('createElement');
 		
-		video.srcObject  = canvasCamera.captureStream(); //window.URL.createObjectURL(canvasCamera.captureStream());
+		navigator.device.capture.captureVideo(captureSuccess, captureError, {limit: 1});
+		
+		function captureError(e) {
+		}
+
+		function captureSuccess(s) {
+			video.src = s[0].fullPath;
+		}
+		
+		//video.src = window.URL.createObjectURL(canvasCamera.captureStream());
 		alert('captureStream');
-		
-		arScene = arController.createBabylonScene(canvas, canvasCamera.captureStream());	
+			
+		arScene = arController.createBabylonScene(canvas, video);	
 
 		alert('arScene');
 		
