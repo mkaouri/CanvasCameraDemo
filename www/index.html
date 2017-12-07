@@ -58,7 +58,7 @@ html,body {
 <script>
 document.addEventListener('deviceready', function () {
 
-	    /*if (window.plugin.CanvasCamera) {
+	    if (window.plugin.CanvasCamera) {
 			window.plugin.CanvasCamera.initialize({
                 fullsize: document.getElementById('fullsize')
             });
@@ -79,27 +79,25 @@ document.addEventListener('deviceready', function () {
               thumbnailRatio: 1/6,
               cameraFacing: 'back'
           };
-		   
+		  
+		var video = document.createElement('video');
+			
           window.plugin.CanvasCamera.start(options, function(error) {
             console.log('[CanvasCamera start]', 'error', error);
 
           }, function(data) {
             // console.log('[CanvasCamera start]', 'data', data);
+			  video.src = window.URL.createObjectURL(data);
 			});	
 			
 			 if (window.ARController) {
-					ARBabylonOnLoad();					
-			  }	
-			  
-		};	*/
-		
-			  if (window.ARController) {
-					ARBabylonOnLoad();					
-			  }	
+					ARBabylonOnLoad(video);					
+			  }				  
+		};	
 			  
 }, false);
 	
-window.ARBabylonOnLoad = function() {
+window.ARBabylonOnLoad = function(video) {
 
 	var canvasCamera = document.getElementById('fullsize');
 	var canvas = document.getElementById('renderCanvas');
@@ -110,22 +108,9 @@ window.ARBabylonOnLoad = function() {
 	var arCameraParam = new ARCameraParam();
 	
     arCameraParam.onload = function () {
+	
         arController = new ARController(640, 480, arCameraParam);
-				
-		var video = document.createElement('video');
 		
-		//video.src = window.URL.createObjectURL(canvasCamera.captureStream());
-		navigator.mediaDevices.getUserMedia({
-			'video': {
-				'facingMode': 'environment'
-		}
-		}).then(function(mediaStream) {
-			video.srcObject = mediaStream;
-			video.src = URL.createObjectURL(mediaStream);
-			video.play();
-			alert('mediaStream');
-		});
-			
 		arScene = arController.createBabylonScene(canvas, video);	
 
 		alert('arScene');
