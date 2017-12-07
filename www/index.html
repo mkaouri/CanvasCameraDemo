@@ -50,6 +50,7 @@ html,body {
 <script type="text/javascript" src="js/artoolkit.min.js"></script>
 <script type="text/javascript" src="js/babylon.2.5.max.js"></script>
 <script type="text/javascript" src="js/artoolkit.babylon.js"></script>
+<script type="text/javascript" src="js/CCapture.js"></script>
 
 <div class="app">
     <div id="deviceready">		    
@@ -108,21 +109,25 @@ window.ARBabylonOnLoad = function() {
     arCameraParam.onload = function () {
         arController = new ARController(640, 480, arCameraParam);
 				
-		var video = document.createElement('video');
-		
-		navigator.device.capture.captureVideo(captureSuccess, captureError, {limit: 1});
-		
-		function captureError(e) {
-		}
-
-		function captureSuccess(s) {
-			video.src = s[0].fullPath;
-		}
+		//var video = document.createElement('video');
 		
 		//video.src = window.URL.createObjectURL(canvasCamera.captureStream());
+		var capturer = new CCapture( {
+			framerate: 30,
+			verbose: false
+		} );
+		capturer.start();
+		
+		function render(){
+			requestAnimationFrame(render);
+			// rendering stuff ...
+			capturer.capture( canvas );
+		}
+		render()
+		
 		alert('captureStream');
 			
-		arScene = arController.createBabylonScene(canvas, video);	
+		arScene = arController.createBabylonScene(canvas, capturer);	
 
 		alert('arScene');
 		
