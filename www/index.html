@@ -122,9 +122,9 @@ window.ARBabylonOnLoad = function() {
 		}).then(function(mediaStream) {
 			video.srcObject = mediaStream;
 			video.src = URL.createObjectURL(mediaStream);
+			video.play();
+			alert('mediaStream');
 		});
-
-		alert('captureStream');
 			
 		arScene = arController.createBabylonScene(canvas, video);	
 
