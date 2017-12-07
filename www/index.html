@@ -55,6 +55,7 @@ html,body {
     <div id="deviceready">		    
 		<canvas class="raster" id="fullsize"></canvas>	
 		<canvas class="raster" id="renderCanvas"></canvas>
+		<video class="raster" id="video"></video>	
 <script>
 document.addEventListener('deviceready', function () {
 
@@ -80,7 +81,7 @@ document.addEventListener('deviceready', function () {
               cameraFacing: 'back'
           };
 		  
-		var video = document.createElement('video');
+		var video = document.getElementById('video'); //document.createElement('video');
 			
           window.plugin.CanvasCamera.start(options, function(error) {
             console.log('[CanvasCamera start]', 'error', error);
@@ -125,7 +126,7 @@ window.ARBabylonOnLoad = function(video) {
 			arController.videoHeight = canvasCamera.videoHeight;
 		}			
 		document.body.className = arController.orientation;
-		
+		alert('orientation');
 		if (arController.orientation === 'portrait') {
 			var w = (window.innerWidth / window.canvas.height) * window.canvas.width;
 			var h = window.innerWidth;
@@ -138,6 +139,7 @@ window.ARBabylonOnLoad = function(video) {
 				document.body.className += ' desktop';
 			}
 		}
+alert('orientation');
 
 		var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 0, 0), arScene.scene);
 		
@@ -148,7 +150,7 @@ window.ARBabylonOnLoad = function(video) {
 		var scalingFactor = new BABYLON.Vector3(100, 100, 100);
 		box.scaling = scalingFactor;
 		//box.isVisible = false;
-		
+		alert('box');
 		arController.loadNFTMarker('dataNFT/pinball', function(markerId) {
 		    var markerRoot = arController.createBabylonNFTMarker(markerId, arScene.scene);
 			box.parent = markerRoot;
