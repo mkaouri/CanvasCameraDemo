@@ -108,7 +108,7 @@ window.ARBabylonOnLoad = function() {
 	
         arController = new ARController(640, 480, arCameraParam);
 
-		arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL().replace( /data:image\/png;base64,/, '' ));	
+		arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL());	
 
 		alert('arScene');
 		
@@ -122,7 +122,7 @@ window.ARBabylonOnLoad = function() {
 			arController.videoHeight = canvasCamera.videoHeight;
 		}			
 		document.body.className = arController.orientation;
-		alert('orientation');
+
 		/*if (arController.orientation === 'portrait') {
 			var w = (window.innerWidth / window.canvas.height) * window.canvas.width;
 			var h = window.innerWidth;
@@ -144,9 +144,10 @@ window.ARBabylonOnLoad = function() {
 		box.position.y = 80;
 		var scalingFactor = new BABYLON.Vector3(100, 100, 100);
 		box.scaling = scalingFactor;
-		//box.isVisible = false;
+		box.isVisible = false;
 		alert('box');
 		arController.loadNFTMarker('dataNFT/pinball', function(markerId) {
+			alert('NFTmarker');
 		    var markerRoot = arController.createBabylonNFTMarker(markerId, arScene.scene);
 			box.parent = markerRoot;
 			alert('markerRoot');
