@@ -120,12 +120,12 @@ window.ARBabylonOnLoad = function() {
 		var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 0, 0), arScene.scene);
 		
 		var box = BABYLON.Mesh.CreateBox('box1', 1, arScene.scene);
-		box.position.z = 40;
-		box.position.x = 80;
-		box.position.y = 80;
-		var scalingFactor = new BABYLON.Vector3(100, 100, 100);
-		box.scaling = scalingFactor;
-		box.isVisible = false;
+		//box.position.z = 40;
+		//box.position.x = 80;
+		//box.position.y = 80;
+		//var scalingFactor = new BABYLON.Vector3(100, 100, 100);
+		//box.scaling = scalingFactor;
+		//box.isVisible = false;
 		alert('box');
 		
 		/*arController.loadNFTMarker('data/pinball', function(markerId) {
@@ -135,8 +135,7 @@ window.ARBabylonOnLoad = function() {
 			alert('markerRoot');
 		});*/
 		
-		arScene.engine.runRenderLoop(function () {	
-alert('engine');		
+		arScene.engine.runRenderLoop(function () {		
 			arScene.process();
 			arScene.scene.render();
 		});
