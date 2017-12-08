@@ -146,7 +146,7 @@ window.ARBabylonOnLoad = function() {
 		box.scaling = scalingFactor;
 		box.isVisible = false;
 		alert('box');
-		arController.loadNFTMarker('dataNFT/pinball', function(markerId) {
+		arController.loadNFTMarker('DataNFT/pinball', function(markerId) {
 			alert('NFTmarker');
 		    var markerRoot = arController.createBabylonNFTMarker(markerId, arScene.scene);
 			box.parent = markerRoot;
