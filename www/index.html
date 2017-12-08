@@ -127,7 +127,7 @@ window.ARBabylonOnLoad = function() {
 		box.scaling = scalingFactor;
 		box.isVisible = false;
 		alert('box');
-		arController.loadNFTMarker(cordova.file.dataDirectory + 'www/DataNFT/pinball', function(markerId) {
+		arController.loadNFTMarker('data/pinball', function(markerId) {
 			alert('NFTmarker');
 		    var markerRoot = arController.createBabylonNFTMarker(markerId, arScene.scene);
 			box.parent = markerRoot;
@@ -147,7 +147,7 @@ window.ARBabylonOnLoad = function() {
         });		
 		
    };		
-   arCameraParam.load(cordova.file.dataDirectory + 'www/data/camera_para.dat');	
+   arCameraParam.load('data/camera_para.dat');	
 
 };
 
