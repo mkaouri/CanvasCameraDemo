@@ -79,7 +79,9 @@ window.ARBabylonOnLoad = function() {
 
 	var canvasCamera = document.getElementById('fullsize');
 	var canvas = document.getElementById('renderCanvas');
-	
+	canvas.height = canvasCamera.height;
+    canvas.width = canvasCamera.width;
+			
 	var arController = null;
 	var arScene=null;
 			
@@ -93,14 +95,14 @@ window.ARBabylonOnLoad = function() {
 
 		alert('arScene');
 		
-		if (canvasCamera.videoWidth < canvasCamera.videoHeight) {
+		if (canvasCamera.videoWidth < canvasCamera.height) {
 			arController.orientation = 'portrait';
-			arController.videoWidth = canvasCamera.videoHeight;
-			arController.videoHeight = canvasCamera.videoWidth;
+			arController.videoWidth = canvasCamera.height;
+			arController.videoHeight = canvasCamera.height;
 		} else {
 			arController.orientation = 'landscape';
-			arController.videoWidth = canvasCamera.videoWidth;
-			arController.videoHeight = canvasCamera.videoHeight;
+			arController.videoWidth = canvasCamera.height;
+			arController.videoHeight = canvasCamera.height;
 		}			
 		document.body.className = arController.orientation;
 
