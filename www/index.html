@@ -127,16 +127,16 @@ window.ARBabylonOnLoad = function() {
 		box.scaling = scalingFactor;
 		box.isVisible = false;
 		alert('box');
-		arController.loadNFTMarker('data/pinball', function(markerId) {
+		
+		/*arController.loadNFTMarker('data/pinball', function(markerId) {
 			alert('NFTmarker');
 		    var markerRoot = arController.createBabylonNFTMarker(markerId, arScene.scene);
 			box.parent = markerRoot;
 			alert('markerRoot');
-		});
+		});*/
 		
-		//arController.detectMarker(v);
-		
-		arScene.engine.runRenderLoop(function () {		
+		arScene.engine.runRenderLoop(function () {	
+alert('engine');		
 			arScene.process();
 			arScene.scene.render();
 		});
