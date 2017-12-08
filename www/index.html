@@ -82,8 +82,8 @@ window.ARBabylonOnLoad = function() {
 
 	//var canvasCamera = document.getElementById('fullsize');
 	var canvas = document.getElementById('renderCanvas');
-	//canvas.height = canvasCamera.height;
-    //canvas.width = canvasCamera.width;
+	canvas.height = '640';
+    canvas.width = '480'; //canvasCamera.width;
 			
 	var arController = null;
 	var arScene=null;
@@ -98,7 +98,12 @@ window.ARBabylonOnLoad = function() {
         engine.setSize(canvas.width, canvas.height);
 			
 		//arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL());	
-arScene = arController.createBabylonScene(canvas);
+		var scene = new BABYLON.Scene(engine);
+            scene.useRightHandedSystem = true;
+			//scene.clearColor = new BABYLON.Color4(0,0,0,0.0000000000000001); 
+			
+        camera = new BABYLON.Camera('camera1', new BABYLON.Vector3(0, 0, 0), scene);   
+		
 		alert('arScene');
 		
 		/*if (canvasCamera.videoWidth < canvasCamera.height) {
@@ -125,9 +130,9 @@ arScene = arController.createBabylonScene(canvas);
 			}
 		}*/
 
-		var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 0, 0), arScene.scene);
+		var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 0, 0), scene);
 		
-		var box = BABYLON.Mesh.CreateBox('box1', 1, arScene.scene);
+		var box = BABYLON.Mesh.CreateBox('box1', 1, scene);
 		//box.position.z = 40;
 		//box.position.x = 80;
 		//box.position.y = 80;
@@ -144,8 +149,8 @@ arScene = arController.createBabylonScene(canvas);
 		});*/
 		
 		engine.runRenderLoop(function () {		
-			arScene.process();
-			arScene.scene.render();
+			//arScene.process();
+			scene.render();
 		});
 
         // the canvas/window resize event handler
