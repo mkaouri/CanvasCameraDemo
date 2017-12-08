@@ -107,9 +107,7 @@ window.ARBabylonOnLoad = function() {
     arCameraParam.onload = function () {
 	
         arController = new ARController(640, 480, arCameraParam);
-		
-		alert('arController');
-		alert(canvasCamera.toDataURL());
+
 		arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL().replace( /data:image\/png;base64,/, '' ));	
 
 		alert('arScene');
@@ -125,7 +123,7 @@ window.ARBabylonOnLoad = function() {
 		}			
 		document.body.className = arController.orientation;
 		alert('orientation');
-		if (arController.orientation === 'portrait') {
+		/*if (arController.orientation === 'portrait') {
 			var w = (window.innerWidth / window.canvas.height) * window.canvas.width;
 			var h = window.innerWidth;
 			arScene.engine.setSize(w, h);
@@ -136,8 +134,7 @@ window.ARBabylonOnLoad = function() {
 				arScene.engine.setSize(window.canvas.width, window.canvas.height);
 				document.body.className += ' desktop';
 			}
-		}
-alert('orientation');
+		}*/
 
 		var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 0, 0), arScene.scene);
 		
