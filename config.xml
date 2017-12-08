@@ -8,20 +8,9 @@
       VirtuoWorks Team
     </author>
     <content src="index.html" />
-    <access origin="*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
-    <platform name="android">
-        <allow-intent href="market:*" />
-    </platform>
-    <platform name="ios">
-        <allow-intent href="itms:*" />
-        <allow-intent href="itms-apps:*" />
-    </platform>
+    <access origin='*' allows-arbitrary-loads-for-media='true' allows-arbitrary-loads-in-web-content='true' allows-local-networking='true' />
+	<allow-intent href="*" />
+	<allow-navigation href="*" />
     <engine name="android" spec="^6.2.3" />
     <plugin name="com.virtuoworks.cordova-plugin-canvascamera" spec="https://github.com/mkaouri/CanvasCameraPlugin.git" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
