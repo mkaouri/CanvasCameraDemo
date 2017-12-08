@@ -108,7 +108,8 @@ window.ARBabylonOnLoad = function(video) {
 	
         arController = new ARController(640, 480, arCameraParam);
 		
-		arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL('image/jpeg', 1.0));	
+		alert(canvasCamera.toDataURL());
+		arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL().replace( /data:image\/png;base64,/, '' ));	
 
 		alert('arScene');
 		
