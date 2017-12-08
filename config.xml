@@ -11,6 +11,9 @@
     <plugin name="cordova-plugin-file" spec="https://github.com/apache/cordova-plugin-file" />
     <plugin name="com.virtuoworks.cordova-plugin-canvascamera" spec="https://github.com/mkaouri/CanvasCameraPlugin.git" />
     <access origin="*" />
+	<allow-navigation href="http://*/*" />
+	<allow-navigation href="https://*/*" />
+	<allow-navigation href="data:*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
