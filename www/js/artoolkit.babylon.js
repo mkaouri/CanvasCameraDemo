@@ -16,7 +16,7 @@
 			//scene.clearColor = new BABYLON.Color4(0,0,0,0.0000000000000001); 
 			
             camera = new BABYLON.Camera('camera1', new BABYLON.Vector3(0, 0, 0), scene);      		
-			camera.freezeProjectionMatrix(BABYLON.Matrix.FromArray(this.getCameraMatrix()));
+			//camera.freezeProjectionMatrix(BABYLON.Matrix.FromArray(this.getCameraMatrix()));
 			window.camera = camera;	
 			
 			var self = this;
