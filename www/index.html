@@ -34,12 +34,12 @@
 
 <div class="app">
     <div id="deviceready">		    
-		<canvas class="raster" id="fullsize"></canvas>	
+		<!--<canvas class="raster" id="fullsize"></canvas>	-->
 		<canvas class="raster" id="renderCanvas"></canvas>
 <script>
 document.addEventListener('deviceready', function () {
 
-	    if (window.plugin.CanvasCamera) {
+	   /* if (window.plugin.CanvasCamera) {
 			window.plugin.CanvasCamera.initialize({
                 fullsize: document.getElementById('fullsize')
             });
@@ -71,8 +71,11 @@ document.addEventListener('deviceready', function () {
 			 if (window.ARController) {
 					ARBabylonOnLoad();					
 			  }				  
-		};	
-			  
+		};	*/
+		
+			 if (window.ARController) {
+					ARBabylonOnLoad();					
+			  }					  
 }, false);
 	
 window.ARBabylonOnLoad = function() {
