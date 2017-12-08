@@ -53,7 +53,7 @@ html,body {
 
 <div class="app">
     <div id="deviceready">		    
-		<video class="raster" id="fullsize"></video>	
+		<canvas class="raster" id="fullsize"></canvas>	
 		<canvas class="raster" id="renderCanvas"></canvas>
 <script>
 document.addEventListener('deviceready', function () {
@@ -97,7 +97,6 @@ document.addEventListener('deviceready', function () {
 window.ARBabylonOnLoad = function(video) {
 
 	var canvasCamera = document.getElementById('fullsize');
-	canvasCamera.play();
 	var canvas = document.getElementById('renderCanvas');
 	
 	var arController = null;
@@ -109,7 +108,7 @@ window.ARBabylonOnLoad = function(video) {
 	
         arController = new ARController(640, 480, arCameraParam);
 		
-		arScene = arController.createBabylonScene(canvas, canvasCamera);	
+		arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL('image/jpeg', 1.0));	
 
 		alert('arScene');
 		
