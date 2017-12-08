@@ -80,10 +80,10 @@ document.addEventListener('deviceready', function () {
 	
 window.ARBabylonOnLoad = function() {
 
-	var canvasCamera = document.getElementById('fullsize');
+	//var canvasCamera = document.getElementById('fullsize');
 	var canvas = document.getElementById('renderCanvas');
-	canvas.height = canvasCamera.height;
-    canvas.width = canvasCamera.width;
+	//canvas.height = canvasCamera.height;
+    //canvas.width = canvasCamera.width;
 			
 	var arController = null;
 	var arScene=null;
@@ -97,11 +97,11 @@ window.ARBabylonOnLoad = function() {
 		var engine = new BABYLON.Engine(canvas, true);
         engine.setSize(canvas.width, canvas.height);
 			
-		arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL());	
-
+		//arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL());	
+arScene = arController.createBabylonScene(canvas);
 		alert('arScene');
 		
-		if (canvasCamera.videoWidth < canvasCamera.height) {
+		/*if (canvasCamera.videoWidth < canvasCamera.height) {
 			arController.orientation = 'portrait';
 			arController.videoWidth = canvasCamera.height;
 			arController.videoHeight = canvasCamera.height;
@@ -112,7 +112,7 @@ window.ARBabylonOnLoad = function() {
 		}			
 		document.body.className = arController.orientation;
 
-		/*if (arController.orientation === 'portrait') {
+		if (arController.orientation === 'portrait') {
 			var w = (window.innerWidth / window.canvas.height) * window.canvas.width;
 			var h = window.innerWidth;
 			arScene.engine.setSize(w, h);
