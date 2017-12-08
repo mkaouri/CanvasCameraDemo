@@ -104,7 +104,7 @@ window.ARBabylonOnLoad = function() {
 			
         camera = new BABYLON.Camera('camera1', new BABYLON.Vector3(0, 0, 0), scene);   
 		
-		alert('arScene');
+		//alert('arScene');
 		
 		/*if (canvasCamera.videoWidth < canvasCamera.height) {
 			arController.orientation = 'portrait';
@@ -132,12 +132,12 @@ window.ARBabylonOnLoad = function() {
 
 		var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 0, 0), scene);
 		
-		var box = BABYLON.Mesh.CreateBox('box1', 1, scene);
+		var box = BABYLON.Mesh.CreateBox('box1', 10, scene);
 		//box.position.z = 40;
 		//box.position.x = 80;
 		//box.position.y = 80;
-		var scalingFactor = new BABYLON.Vector3(100, 100, 100);
-		box.scaling = scalingFactor;
+		//var scalingFactor = new BABYLON.Vector3(100, 100, 100);
+		//box.scaling = scalingFactor;
 		//box.isVisible = false;
 		alert('box');
 		
