@@ -9,7 +9,6 @@
     </author>
     <content src="index.html" />
 	<access origin="*" />
-	<allow-navigation href="data:*" />
     <plugin name="com.virtuoworks.cordova-plugin-canvascamera" spec="https://github.com/mkaouri/CanvasCameraPlugin.git" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <allow-intent href="http://*/*" />
