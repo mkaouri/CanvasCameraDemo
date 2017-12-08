@@ -91,6 +91,9 @@ window.ARBabylonOnLoad = function() {
 	
         arController = new ARController(640, 480, arCameraParam);
 
+		var engine = new BABYLON.Engine(canvas, true);
+        engine.setSize(canvas.width, canvas.height);
+			
 		arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL());	
 
 		alert('arScene');
@@ -137,15 +140,15 @@ window.ARBabylonOnLoad = function() {
 			alert('markerRoot');
 		});*/
 		
-		arScene.engine.runRenderLoop(function () {		
+		engine.runRenderLoop(function () {		
 			arScene.process();
 			arScene.scene.render();
 		});
 
         // the canvas/window resize event handler
-        window.addEventListener('resize', function () {
-            arScene.engine.resize();
-        });		
+        //window.addEventListener('resize', function () {
+       //     engine.resize();
+        //});		
 		
    };		
    arCameraParam.load('data/camera_para.dat');	
