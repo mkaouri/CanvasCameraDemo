@@ -1,171 +1,35 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-  <head>
-	  <meta name="format-detection" content="telephone=no">
-      <meta name="msapplication-tap-highlight" content="no">
-      <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">	  
-      <link rel="stylesheet" type="text/css" href="css/index.css">
-      <title>Canvas Camera Demo</title>
-  </head>
-<body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Blank App</title>
+	<style>html,body,canvas { margin: 0; padding: 0; width: 100%; height: 100%; font-size: 0; }</style>
+    </head>
+    <body>
+        <script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/babylon.2.5.max.js"></script>
+		<canvas id="render-canvas"></canvas>
+		<script>
+		  var canvas = document.getElementById("render-canvas");
+    var engine = new BABYLON.Engine(canvas);
+    var scene = new BABYLON.Scene(engine);
+    scene.clearColor = new BABYLON.Color3(0.8, 0.8, 0.8);
+    var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 0, -10), scene);
+    var light = new BABYLON.PointLight("light", new BABYLON.Vector3(10, 10, 0), scene);
 
-<script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/artoolkit.min.js"></script>
-<script type="text/javascript" src="js/babylon.2.5.max.js"></script>
-<script type="text/javascript" src="js/artoolkit.babylon.js"></script>
+    var box = BABYLON.Mesh.CreateBox("box", 2, scene);
+    box.rotation.x = -0.2;
+    box.rotation.y = -0.4;
 
-<div class="app">
-    <div id="deviceready">		    
-		<!--<canvas class="raster" id="fullsize"></canvas>	-->
-		<canvas class="raster" id="renderCanvas"></canvas>
-<script>
-document.addEventListener('deviceready', function () {
+    var boxMaterial = new BABYLON.StandardMaterial("material", scene);
+    boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
+    box.material = boxMaterial;
 
-	   /* if (window.plugin.CanvasCamera) {
-			window.plugin.CanvasCamera.initialize({
-                fullsize: document.getElementById('fullsize')
-            });
-       	
-           var options = {
-              canvas: {
-                width: 640,
-                height: 480
-              },
-              capture: {
-                width: 640,
-                height: 480
-              },
-              use: 'file',
-              fps: 30,
-              flashMode: false,
-              hasThumbnail: false,
-              thumbnailRatio: 1/6,
-              cameraFacing: 'back'
-          };
-		  		
-          window.plugin.CanvasCamera.start(options, function(error) {
-            console.log('[CanvasCamera start]', 'error', error);
-
-          }, function(data) {
-            // console.log('[CanvasCamera start]', 'data', data);
-			});	
-		
-			 if (window.ARController) {
-					ARBabylonOnLoad();					
-			  }				  
-		};	*/
-		
-			 if (window.ARController) {
-					ARBabylonOnLoad();					
-			  }					  
-}, false);
-	
-window.ARBabylonOnLoad = function() {
-
-	//var canvasCamera = document.getElementById('fullsize');
-	var canvas = document.getElementById('renderCanvas');
-	canvas.height = '640';
-    canvas.width = '480'; //canvasCamera.width;
-			
-	var arController = null;
-	var arScene=null;
-			
-	var arCameraParam = new ARCameraParam();
-	
-    arCameraParam.onload = function () {
-	
-        arController = new ARController(640, 480, arCameraParam);
-
-		var engine = new BABYLON.Engine(canvas, true);
-        engine.setSize(canvas.width, canvas.height);
-			
-		//arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL());	
-		var scene = new BABYLON.Scene(engine);
-            scene.useRightHandedSystem = true;
-			//scene.clearColor = new BABYLON.Color4(0,0,0,0.0000000000000001); 
-			
-        camera = new BABYLON.Camera('camera1', new BABYLON.Vector3(0, 0, 0), scene);   
-		
-		//alert('arScene');
-		
-		/*if (canvasCamera.videoWidth < canvasCamera.height) {
-			arController.orientation = 'portrait';
-			arController.videoWidth = canvasCamera.height;
-			arController.videoHeight = canvasCamera.height;
-		} else {
-			arController.orientation = 'landscape';
-			arController.videoWidth = canvasCamera.height;
-			arController.videoHeight = canvasCamera.height;
-		}			
-		document.body.className = arController.orientation;
-
-		if (arController.orientation === 'portrait') {
-			var w = (window.innerWidth / window.canvas.height) * window.canvas.width;
-			var h = window.innerWidth;
-			arScene.engine.setSize(w, h);
-		} else {
-			if (/Android|mobile|iPad|iPhone/i.test(navigator.userAgent)) {
-				arScene.engine.setSize(window.innerWidth, (window.innerWidth / window.canvas.width) * window.canvas.height);
-			} else {
-				arScene.engine.setSize(window.canvas.width, window.canvas.height);
-				document.body.className += ' desktop';
-			}
-		}*/
-
-		var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 0, 0), scene);
-		
-		var box = BABYLON.Mesh.CreateBox('box1', 10, scene);
-		//box.position.z = 40;
-		//box.position.x = 80;
-		//box.position.y = 80;
-		//var scalingFactor = new BABYLON.Vector3(100, 100, 100);
-		//box.scaling = scalingFactor;
-		//box.isVisible = false;
-		alert('box');
-		
-		/*arController.loadNFTMarker('data/pinball', function(markerId) {
-			alert('NFTmarker');
-		    var markerRoot = arController.createBabylonNFTMarker(markerId, arScene.scene);
-			box.parent = markerRoot;
-			alert('markerRoot');
-		});*/
-		
-		engine.runRenderLoop(function () {		
-			//arScene.process();
-			scene.render();
-		});
-
-        // the canvas/window resize event handler
-        //window.addEventListener('resize', function () {
-       //     engine.resize();
-        //});		
-		
-   };		
-   arCameraParam.load('data/camera_para.dat');	
-
-};
-
-</script>
-    </div>
-</div>
-
-</body>
+    var renderLoop = function () {
+        scene.render();
+    };
+    engine.runRenderLoop(renderLoop);
+		</script>
+    </body>
 </html>
