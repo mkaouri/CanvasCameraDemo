@@ -14,4 +14,7 @@
     <engine name="android" spec="^6.2.3" />
     <plugin name="com.virtuoworks.cordova-plugin-canvascamera" spec="https://github.com/mkaouri/CanvasCameraPlugin.git" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
+	<feature name="http://api.phonegap.com/1.0/file" />
+	<platform name="ios">
+	</platform>
 </widget>
