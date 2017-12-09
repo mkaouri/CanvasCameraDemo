@@ -87,9 +87,9 @@ function checkFlag() {
        window.setTimeout(checkFlag, 100); /* this checks the flag every 100 milliseconds*/
     } else {
 
-	var canvas = document.getElementById('renderCanvas');
-canvas.height = canvasCamera.height;
-canvas.width = canvasCamera.width;
+	window.canvas = document.getElementById('renderCanvas');
+	window.canvas.height = canvasCamera.height;
+	window.canvas.width = canvasCamera.width;
 			
 	var arController = null;
 	var arScene=null;
@@ -100,14 +100,14 @@ canvas.width = canvasCamera.width;
 	
         arController = new ARController(640, 480, arCameraParam);
 
-		var engine = new BABYLON.Engine(canvas);
-		engine.setSize(canvas.width, canvas.height);
+		var engine = new BABYLON.Engine(window.canvas);
+		engine.setSize(window.canvas.width, window.canvas.height);
 		
 		var image = document.createElement("IMG");
 	    image.src = canvasCamera.toDataURL();
 
 		//arScene = arController.createBabylonScene(canvas, engine, canvasCamera.toDataURL());	
-		arScene = arController.createBabylonScene(canvas, engine, image);	
+		arScene = arController.createBabylonScene(image);	
         //arScene = arController.createBabylonScene(canvas, engine);
 		//alert('arScene');
 		
