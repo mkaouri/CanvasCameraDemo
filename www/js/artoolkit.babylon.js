@@ -25,6 +25,8 @@
 				scene: scene,
 				
 				camera: camera,
+				
+				video: video,
 
 				arController: this,
 
