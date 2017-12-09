@@ -15,7 +15,8 @@
             scene.useRightHandedSystem = true;
 			scene.clearColor = new BABYLON.Color4(0,0,0,0.0000000000000001); 
 			
-            camera = new BABYLON.Camera('camera1', new BABYLON.Vector3(0, 0, 0), scene);      		
+            //camera = new BABYLON.Camera('camera1', new BABYLON.Vector3(0, 0, 0), scene);    
+			var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 0, -10), scene);			
 			//camera.freezeProjectionMatrix(BABYLON.Matrix.FromArray(this.getCameraMatrix()));
 			window.camera = camera;	
 			
