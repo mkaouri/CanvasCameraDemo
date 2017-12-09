@@ -160,9 +160,12 @@ function checkFlag() {
 			alert('markerRoot');
 		});
 		
-		engine.runRenderLoop(function () {		
-			arScene.process();
-			arScene.scene.render();
+		engine.runRenderLoop(function () {	
+			if(image.src != canvasCamera.toDataURL()){
+				image.src = canvasCamera.toDataURL();
+				arScene.process();
+				arScene.scene.render();			
+			}
 		});
 		
    };		
