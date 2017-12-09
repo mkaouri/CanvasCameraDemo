@@ -17,8 +17,7 @@
 			
             var camera = new BABYLON.Camera('camera1', new BABYLON.Vector3(0, 0, 0), scene);    
 			//var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 0, -10), scene);			
-			camera.freezeProjectionMatrix(BABYLON.Matrix.FromArray(this.getCameraMatrix()));
-			window.camera = camera;	
+			camera.freezeProjectionMatrix(BABYLON.Matrix.FromArray(this.getCameraMatrix()));	
 			
 			var self = this;
 
@@ -59,7 +58,8 @@
 							}
 						}
 					}
-					self.process(video);
+					//self.process(video);
+					artoolkit.process(video);
 				}
 			};
 		};
