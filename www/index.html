@@ -78,8 +78,15 @@ canvas.raster {
           }, function(data) {
             // console.log('[CanvasCamera start]', 'data', data);
 			});	
+			
+var canvasCamera = document.getElementById('fullsize');			
+var blank = document.createElement('canvas');
 
-	var canvasCamera = document.getElementById('fullsize');
+function checkFlag() {
+    if(canvas.toDataURL() == blank.toDataURL()) {
+       window.setTimeout(checkFlag, 100); /* this checks the flag every 100 milliseconds*/
+    } else {
+
 	var canvas = document.getElementById('renderCanvas');
 canvas.height = canvasCamera.height;
 canvas.width = canvasCamera.width;
@@ -160,7 +167,9 @@ canvas.width = canvasCamera.width;
 		
    };		
    arCameraParam.load('data/camera_para.dat');	
-   
+      }
+}
+checkFlag(); 
 /*var canvasCamera = document.getElementById("fullsize");			
 var canvas = document.getElementById("renderCanvas");
 canvas.height = '480';
