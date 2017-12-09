@@ -133,17 +133,16 @@ canvas.width = canvasCamera.width;
     var boxMaterial = new BABYLON.StandardMaterial("material", arScene.scene);
     boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
     box.material = boxMaterial;
+	
+	box.position.z = 40;
+	box.position.x = 80;
+	box.position.y = 80;
+    var scalingFactor = new BABYLON.Vector3(100, 100, 100);
+	box.scaling = scalingFactor;
+	box.isVisible = false;
 	alert('box');
-		//box.position.z = 40;
-		//box.position.x = 80;
-		//box.position.y = 80;
-		//var scalingFactor = new BABYLON.Vector3(100, 100, 100);
-		//box.scaling = scalingFactor;
-		//box.isVisible = false;
-		//alert('box');
 		
 		arController.loadNFTMarker('data/pinball', function(markerId) {
-			alert('NFTmarker');
 		    var markerRoot = arController.createBabylonNFTMarker(markerId, arScene.scene);
 			box.parent = markerRoot;
 			alert('markerRoot');
