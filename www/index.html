@@ -81,8 +81,8 @@ canvas.raster {
 
 	var canvasCamera = document.getElementById('fullsize');
 	var canvas = document.getElementById('renderCanvas');
-	canvas.height = canvasCamera.height;
-    canvas.width = canvasCamera.width;
+canvas.height = '480';
+canvas.width = '640';
 			
 	var arController = null;
 	var arScene=null;
@@ -93,8 +93,11 @@ canvas.raster {
 	
         arController = new ARController(640, 480, arCameraParam);
 
-		arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL());	
-
+		var engine = new BABYLON.Engine(canvas, true);
+        engine.setSize(canvas.width, canvas.height);
+		
+		//arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL());	
+arScene = arController.createBabylonScene(canvas);
 		//alert('arScene');
 		
 		if (canvasCamera.videoWidth < canvasCamera.videoHeight) {
@@ -147,15 +150,10 @@ canvas.raster {
 			alert('markerRoot');
 		});*/
 		
-		arScene.engine.runRenderLoop(function () {		
+		engine.runRenderLoop(function () {		
 			arScene.process();
 			arScene.scene.render();
 		});
-
-        // the canvas/window resize event handler
-        window.addEventListener('resize', function () {
-            arScene.engine.resize();
-        });		
 		
    };		
    arCameraParam.load('data/camera_para.dat');	
