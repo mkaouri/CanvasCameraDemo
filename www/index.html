@@ -81,8 +81,8 @@ canvas.raster {
 
 	var canvasCamera = document.getElementById('fullsize');
 	var canvas = document.getElementById('renderCanvas');
-canvas.height = '480';
-canvas.width = '640';
+canvas.height = canvasCamera.height;
+canvas.width = canvasCamera.width;
 			
 	var arController = null;
 	var arScene=null;
@@ -98,9 +98,9 @@ canvas.width = '640';
 		
 		//arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL());	
 arScene = arController.createBabylonScene(canvas);
-		//alert('arScene');
+		alert('arScene');
 		
-		if (canvasCamera.videoWidth < canvasCamera.videoHeight) {
+	/*	if (canvasCamera.videoWidth < canvasCamera.videoHeight) {
 			arController.orientation = 'portrait';
 			arController.videoWidth = canvasCamera.videoHeight;
 			arController.videoHeight = canvasCamera.videoWidth;
@@ -110,7 +110,7 @@ arScene = arController.createBabylonScene(canvas);
 			arController.videoHeight = canvasCamera.videoHeight;
 		}			
 		document.body.className = arController.orientation;
-
+*/
 		/*if (arController.orientation === 'portrait') {
 			var w = (window.innerWidth / window.canvas.height) * window.canvas.width;
 			var h = window.innerWidth;
@@ -134,7 +134,7 @@ arScene = arController.createBabylonScene(canvas);
     var boxMaterial = new BABYLON.StandardMaterial("material", arScene.scene);
     boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
     box.material = boxMaterial;
-	
+	alert('box');
 		//box.position.z = 40;
 		//box.position.x = 80;
 		//box.position.y = 80;
