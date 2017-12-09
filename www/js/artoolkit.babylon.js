@@ -33,30 +33,30 @@
 				process: function() {
 					for (var i in self.BabylonPatternMarkers) {
 						self.BabylonPatternMarkers[i].visible = false;
-						self.BabylonPatternMarkers[i].getChildMeshes().forEach(function (mesh) {
-							mesh.isVisible = false;
-						});						
+						//self.BabylonPatternMarkers[i].getChildMeshes().forEach(function (mesh) {
+						//	mesh.isVisible = false;
+						//});						
 					}
 					for (var i in self.BabylonNFTMarkers) {
 						self.BabylonNFTMarkers[i].visible = false;
-						self.BabylonNFTMarkers[i].getChildMeshes().forEach(function (mesh) {
-							mesh.isVisible = false;
-						});
+						//self.BabylonNFTMarkers[i].getChildMeshes().forEach(function (mesh) {
+						//	mesh.isVisible = false;
+						//});
 					}
 					for (var i in self.BabylonBarcodeMarkers) {
 						self.BabylonBarcodeMarkers[i].visible = false;
-						self.BabylonBarcodeMarkers[i].getChildMeshes().forEach(function (mesh) {
-							mesh.isVisible = false;
-						});							
+						//self.BabylonBarcodeMarkers[i].getChildMeshes().forEach(function (mesh) {
+						//	mesh.isVisible = false;
+						//});							
 					}
 					for (var i in self.BabylonMultiMarkers) {
 						self.BabylonMultiMarkers[i].visible = false;
 						for (var j=0; j<self.BabylonMultiMarkers[i].markers.length; j++) {
 							if (self.BabylonMultiMarkers[i].markers[j]) {
 								self.BabylonMultiMarkers[i].markers[j].visible = false;
-								self.BabylonMultiMarkers[i].markers[j].getChildMeshes().forEach(function (mesh) {
-									mesh.isVisible = false;
-								});									
+								//self.BabylonMultiMarkers[i].markers[j].getChildMeshes().forEach(function (mesh) {
+								//	mesh.isVisible = false;
+								//});									
 							}
 						}
 					}
