@@ -95,7 +95,8 @@ canvas.width = canvasCamera.width;
 
 		var engine = new BABYLON.Engine(canvas);
 		
-		arScene = arController.createBabylonScene(canvas, engine, canvasCamera.toDataURL());	
+		//arScene = arController.createBabylonScene(canvas, engine, canvasCamera.toDataURL());	
+		arScene = arController.createBabylonScene(canvas, engine, canvasCamera);	
         //arScene = arController.createBabylonScene(canvas, engine);
 		alert('arScene');
 		
