@@ -9,22 +9,5 @@
     </author>
     <content src="index.html" />
 	<access origin="*" />
-    <plugin name="com.virtuoworks.cordova-plugin-canvascamera" spec="https://github.com/mkaouri/CanvasCameraPlugin.git" />
-    <plugin name="cordova-plugin-whitelist" version="1" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
-    <platform name="android">
-        <allow-intent href="market:*" />
-    </platform>
-    <platform name="ios">
-        <allow-intent href="itms:*" />
-        <allow-intent href="itms-apps:*" />
-    </platform>
-	<gap:config-file platform="ios" target="*-Info.plist" parent="NSCameraUsageDescription" overwrite="true">
-		<string>Allow the app to use your camera</string>
-	</gap:config-file>		
+    <plugin name="com.virtuoworks.cordova-plugin-canvascamera" spec="https://github.com/mkaouri/CanvasCameraPlugin.git" />	
 </widget>
