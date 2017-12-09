@@ -93,11 +93,10 @@ canvas.width = canvasCamera.width;
 	
         arController = new ARController(640, 480, arCameraParam);
 
-		var engine = new BABYLON.Engine(canvas, true);
-        engine.setSize(canvas.width, canvas.height);
+		var engine = new BABYLON.Engine(canvas);
 		
 		//arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL());	
-arScene = arController.createBabylonScene(canvas);
+        arScene = arController.createBabylonScene(canvas, engine);
 		alert('arScene');
 		
 	/*	if (canvasCamera.videoWidth < canvasCamera.videoHeight) {
@@ -151,7 +150,7 @@ arScene = arController.createBabylonScene(canvas);
 		});*/
 		
 		engine.runRenderLoop(function () {		
-			arScene.process();
+			//arScene.process();
 			arScene.scene.render();
 		});
 		
