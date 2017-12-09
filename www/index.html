@@ -95,8 +95,8 @@ canvas.width = canvasCamera.width;
 
 		var engine = new BABYLON.Engine(canvas);
 		
-		//arScene = arController.createBabylonScene(canvas, canvasCamera.toDataURL());	
-        arScene = arController.createBabylonScene(canvas, engine);
+		arScene = arController.createBabylonScene(canvas, engine, canvasCamera.toDataURL());	
+        //arScene = arController.createBabylonScene(canvas, engine);
 		alert('arScene');
 		
 	/*	if (canvasCamera.videoWidth < canvasCamera.videoHeight) {
@@ -142,15 +142,15 @@ canvas.width = canvasCamera.width;
 		//box.isVisible = false;
 		//alert('box');
 		
-		/*arController.loadNFTMarker('data/pinball', function(markerId) {
+		arController.loadNFTMarker('data/pinball', function(markerId) {
 			alert('NFTmarker');
 		    var markerRoot = arController.createBabylonNFTMarker(markerId, arScene.scene);
 			box.parent = markerRoot;
 			alert('markerRoot');
-		});*/
+		});
 		
 		engine.runRenderLoop(function () {		
-			//arScene.process();
+			arScene.process();
 			arScene.scene.render();
 		});
 		
