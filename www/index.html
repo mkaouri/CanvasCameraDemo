@@ -96,7 +96,8 @@ canvas.width = canvasCamera.width;
 		var engine = new BABYLON.Engine(canvas);
 		engine.setSize(canvas.width, canvas.height);
 		
-		var image = canvasCamera.toDataURL("image/png").replace("image/png", "image/octet-stream");
+		var image = document.createElement("IMG");
+	    image.src = canvasCamera.toDataURL();
 
 		//arScene = arController.createBabylonScene(canvas, engine, canvasCamera.toDataURL());	
 		arScene = arController.createBabylonScene(canvas, engine, image);	
