@@ -83,7 +83,7 @@ var canvasCamera = document.getElementById('fullsize');
 var blank = document.createElement('canvas');
 
 function checkFlag() {
-    if(canvas.toDataURL() == blank.toDataURL()) {
+    if(canvasCamera.toDataURL() == blank.toDataURL()) {
        window.setTimeout(checkFlag, 100); /* this checks the flag every 100 milliseconds*/
     } else {
 
