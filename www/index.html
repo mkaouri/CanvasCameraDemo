@@ -152,12 +152,12 @@ canvas.width = canvasCamera.width;
     var scalingFactor = new BABYLON.Vector3(100, 100, 100);
 	box.scaling = scalingFactor;
 	box.isVisible = false;
-	//alert('box');
+	alert('box');
 		
 		arController.loadNFTMarker('data/pinball', function(markerId) {
 		    var markerRoot = arController.createBabylonNFTMarker(markerId, arScene.scene);
 			box.parent = markerRoot;
-			//alert('markerRoot');
+			alert('markerRoot');
 		});
 		
 		engine.runRenderLoop(function () {		
