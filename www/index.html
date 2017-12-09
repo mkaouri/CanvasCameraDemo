@@ -50,7 +50,7 @@ canvas.raster {
 		<script>
 	document.addEventListener('deviceready', function () {
 
-	    if (window.plugin.CanvasCamera) {
+	/*    if (window.plugin.CanvasCamera) {
 			window.plugin.CanvasCamera.initialize({
                 fullsize: document.getElementById('fullsize')
             });
@@ -78,27 +78,32 @@ canvas.raster {
           }, function(data) {
             // console.log('[CanvasCamera start]', 'data', data);
 			});	
-
-	var canvasCamera = document.getElementById('fullsize');
+*/
+	//var canvasCamera = document.getElementById('fullsize');
 	var canvas = document.getElementById('renderCanvas');
-canvas.height = canvasCamera.height;
-canvas.width = canvasCamera.width;
+//canvas.height = canvasCamera.height;
+//canvas.width = canvasCamera.width;
 			
-	var arController = null;
-	var arScene=null;
+	//var arController = null;
+	//var arScene=null;
 			
-	var arCameraParam = new ARCameraParam();
+	//var arCameraParam = new ARCameraParam();
 	
-    arCameraParam.onload = function () {
+	ARController.getUserMediaBabylonScene({maxARVideoSize: 320, cameraParam: 'data/camera_para.dat', 
+	onSuccess: function(arScene, arController, arCamera) {
 	
-        arController = new ARController(640, 480, arCameraParam);
+    //arCameraParam.onload = function () {
+	
+        //arController = new ARController(640, 480, arCameraParam);
 
 		var engine = new BABYLON.Engine(canvas);
 		
+		//var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+		
 		//arScene = arController.createBabylonScene(canvas, engine, canvasCamera.toDataURL());	
-		arScene = arController.createBabylonScene(canvas, engine, canvasCamera);	
+		//arScene = arController.createBabylonScene(canvas, engine, canvasCamera);	
         //arScene = arController.createBabylonScene(canvas, engine);
-		alert('arScene');
+		//alert('arScene');
 		
 	/*	if (canvasCamera.videoWidth < canvasCamera.videoHeight) {
 			arController.orientation = 'portrait';
@@ -154,9 +159,15 @@ canvas.width = canvasCamera.width;
 			arScene.scene.render();
 		});
 		
-   };		
-   arCameraParam.load('data/camera_para.dat');	
-   
+   //};		
+   //arCameraParam.load('data/camera_para.dat');	
+        // the canvas/window resize event handler
+        window.addEventListener('resize', function () {
+            engine.resize();
+        });		
+
+	}});
+	
 /*var canvasCamera = document.getElementById("fullsize");			
 var canvas = document.getElementById("renderCanvas");
 canvas.height = '480';
@@ -182,9 +193,9 @@ canvas.width = '640';
     };
     engine.runRenderLoop(renderLoop); */
 	
-		};	
+	//	};	
 			  
-}, false);	
+//}, false);	
 	
 		</script>
     </body>
