@@ -8,10 +8,45 @@
     </head>
     <body>
         <script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/artoolkit.min.js"></script>
 		<script type="text/javascript" src="js/babylon.2.5.max.js"></script>
+		<script type="text/javascript" src="js/artoolkit.babylon.js"></script>
+	<div id="deviceready">	
+		<canvas class="raster" id="fullsize"></canvas>	
 		<canvas id="render-canvas"></canvas>
 		<script>
-		  var canvas = document.getElementById("render-canvas");
+	document.addEventListener('deviceready', function () {
+
+	    if (window.plugin.CanvasCamera) {
+			window.plugin.CanvasCamera.initialize({
+                fullsize: document.getElementById('fullsize')
+            });
+       	
+           var options = {
+              canvas: {
+                width: 640,
+                height: 480
+              },
+              capture: {
+                width: 640,
+                height: 480
+              },
+              use: 'file',
+              fps: 30,
+              flashMode: false,
+              hasThumbnail: false,
+              thumbnailRatio: 1/6,
+              cameraFacing: 'back'
+          };
+		  		
+          window.plugin.CanvasCamera.start(options, function(error) {
+            console.log('[CanvasCamera start]', 'error', error);
+
+          }, function(data) {
+            // console.log('[CanvasCamera start]', 'data', data);
+			});	
+		
+var canvas = document.getElementById("render-canvas");
     var engine = new BABYLON.Engine(canvas);
     var scene = new BABYLON.Scene(engine);
     scene.clearColor = new BABYLON.Color3(0.8, 0.8, 0.8);
@@ -30,6 +65,11 @@
         scene.render();
     };
     engine.runRenderLoop(renderLoop);
+	
+		};	
+			  
+}, false);	
+	
 		</script>
     </body>
 </html>
