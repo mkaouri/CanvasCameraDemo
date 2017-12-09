@@ -121,9 +121,17 @@ canvas.raster {
 			}
 		}*/
 
-		var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 0, 0), arScene.scene);
-		
-		var box = BABYLON.Mesh.CreateBox('box1', 2, arScene.scene);
+    
+    var light = new BABYLON.PointLight("light", new BABYLON.Vector3(10, 10, 0), arScene.scene);
+
+    var box = BABYLON.Mesh.CreateBox("box", 2, arScene.scene);
+    box.rotation.x = -0.2;
+    box.rotation.y = -0.4;
+
+    var boxMaterial = new BABYLON.StandardMaterial("material", arScene.scene);
+    boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
+    box.material = boxMaterial;
+	
 		//box.position.z = 40;
 		//box.position.x = 80;
 		//box.position.y = 80;
