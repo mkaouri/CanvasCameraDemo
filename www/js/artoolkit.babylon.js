@@ -2,30 +2,14 @@
 
 (function() {
 	var integrate = function() {
-		
-		ARController.getUserMediaBabylonScene = function(configuration) {
-			var obj = {};
-			for (var i in configuration) {
-				obj[i] = configuration[i];
-			}
-			var onSuccess = configuration.onSuccess;
-
-			obj.onSuccess = function(arController, arCameraParam) {
-				var scenes = arController.createBabylonScene();
-				onSuccess(scenes, arController, arCameraParam);
-			};
-
-			var video = this.getUserMediaARController(obj);
-			return video;
-		};
-		
-		ARController.prototype.createBabylonScene = function(video) {
+	
+		ARController.prototype.createBabylonScene = function(canvas, engine, video) {
 			video = video || this.image;
 
 			this.setupBabylon();
 
-			var engine = new BABYLON.Engine(window.canvas);
-            engine.setSize(window.canvas.width, window.canvas.height);
+			//var engine = new BABYLON.Engine(canvas, true);
+            //engine.setSize(canvas.width, canvas.height);
 			
 			var scene = new BABYLON.Scene(engine);
             //scene.useRightHandedSystem = true;
@@ -197,9 +181,9 @@
 	var tick = function() {
 		if (window.ARController) {
 			integrate();
-			if (window.ARBabylonOnLoad) {
-				window.ARBabylonOnLoad();
-			}
+			//if (window.ARBabylonOnLoad) {
+			//	window.ARBabylonOnLoad();
+			//}
 		} else {
 			setTimeout(tick, 50);
 		}			
