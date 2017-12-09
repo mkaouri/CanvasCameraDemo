@@ -3,16 +3,16 @@
 (function() {
 	var integrate = function() {
 	
-		ARController.prototype.createBabylonScene = function(canvas, video) {
+		ARController.prototype.createBabylonScene = function(canvas, engine, video) {
 			video = video || this.image;
 
 			this.setupBabylon();
 
-			var engine = new BABYLON.Engine(canvas, true);
-            engine.setSize(canvas.width, canvas.height);
+			//var engine = new BABYLON.Engine(canvas, true);
+            //engine.setSize(canvas.width, canvas.height);
 			
 			var scene = new BABYLON.Scene(engine);
-            scene.useRightHandedSystem = true;
+            //scene.useRightHandedSystem = true;
 			scene.clearColor = new BABYLON.Color4(0,0,0,0.0000000000000001); 
 			
             //camera = new BABYLON.Camera('camera1', new BABYLON.Vector3(0, 0, 0), scene);    
@@ -22,9 +22,7 @@
 			
 			var self = this;
 
-			return {
-				engine: engine,
-								
+			return {				
 				scene: scene,
 				
 				camera: camera,
